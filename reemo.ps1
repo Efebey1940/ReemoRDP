@@ -4,13 +4,13 @@ $configPath = "${Env:PROGRAMFILES}\Reemo\service\reemo.ini"
 $reemoServiceName = "Reemo"  
 $authToken = "f5acdf09f0f5" 
 
-Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/reemo.ini -OutFile ${Env:PROGRAMFILES}\Reemo\service\reemo.ini
-
 Write-Host "Downloading Reemo installer..."
 Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
 
 Write-Host "Installing Reemo..."
 Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait
+
+Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/reemo.ini -OutFile ${Env:PROGRAMFILES}\Reemo\service\reemo.ini
 
 cmd /c taskkill /f /im reemod.exe
 
