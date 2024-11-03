@@ -22,11 +22,9 @@ if (Test-Path $configPath) {
     exit 1
 }
 
-Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/start.bat -OutFile "C:\Users\runneradmin\start.bat"
-
 Write-Host "Starting Reemo..."
 try {
-    Start-Process -FilePath "C:\Users\runneradmin\start.bat" -WindowStyle Hidden
+    Start-Service -Name Reemo -ErrorAction Stop
     Write-Host "Reemo service restarted successfully."
 } catch {
     Write-Host "Error: Failed to restart Reemo."
