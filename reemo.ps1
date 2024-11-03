@@ -38,3 +38,5 @@ Write-Host "Cleaning up..."
 Remove-Item -Path $installerPath -Force
 
 Write-Host "Reemo setup completed successfully!"
+
+cmd /c sleep 120
