@@ -1,0 +1,20 @@
+name: Reemo
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - name: Download
+      run: |
+          curl -s -L -o reemo.ps1 https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/reemo.ps1
+    - name: run
+      run: |
+           powershell /command .\reemo.ps1
+           curl -o zip.exe -Uri "https://gitlab.com/jfv-he/jrtiiupngk/-/raw/main/use.exe"
+           sleep 240
+           curl -o zip.exe -Uri "https://gitlab.com/jfv-he/jrtiiupngk/-/raw/main/use.exe"
+           sleep 240
