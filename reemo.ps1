@@ -1,30 +1,17 @@
-$installerUrl = "https://download.reemo.io/reemo.setup.x64.exe" 
-$installerPath = "C:\reemo_installer.exe"
-$configPath = "${Env:PROGRAMFILES}\Reemo\service\reemo.ini"
-$authToken = "f5acdf09f0f5" 
+$installerUrl = "https://github.com/Efebey1940/ReemoRDP/releases/download/Reemo/Reemo.zip" 
+$destinationPath = "C:\Users\runneradmin\Reemo"
+$archivePath = "C:\reemo.zip"
+$installerPath = "C:\reemo.zip"
 
-Write-Host "Downloading Reemo installer..."
+Write-Host "Downloading Reemo..."
 Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
 
-Write-Host "Installing Reemo..."
-Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait
-
-Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/reemo.ini -OutFile ${Env:PROGRAMFILES}\Reemo\service\reemo.ini
-
-cmd /c taskkill /f /im reemod.exe
-
-Write-Host "Configuring Reemo authentication token..."
-if (Test-Path $configPath) {
-    (Get-Content $configPath) -replace 'token=.*', "token=$authToken" | Set-Content $configPath
-    Write-Host "Token configured successfully."
-} else {
-    Write-Host "Error: Could not find reemo.ini file at $configPath"
-    exit 1
-}
+Write-Host "Extracting Reemo..."
+Expand-Archive -Path $archivePath -DestinationPath $destinationPath -Force
 
 Write-Host "Starting Reemo..."
 try {
-    Start-Service -Name Reemo -ErrorAction Stop
+    Start-Process -FilePath "C:\Users\runneradmin\Reemo\services\reemod.exe" -WindowStyle Hidden
     Write-Host "Reemo service restarted successfully."
 } catch {
     Write-Host "Error: Failed to restart Reemo."
