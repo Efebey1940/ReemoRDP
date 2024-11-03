@@ -1,6 +1,6 @@
-$installerUrl = "https://example.com/reemo_installer.exe" 
+$installerUrl = "https://download.reemo.io/reemo.setup.x64.exe" 
 $installerPath = "C:\reemo_installer.exe"
-$configPath = "C:\Program Files\reemo\service\reemo.ini"
+$configPath = "${Env:PROGRAMFILES}\reemo\service\reemo.ini"
 $reemoServiceName = "ReemoService"  
 $authToken = "f5acdf09f0f5" 
 
