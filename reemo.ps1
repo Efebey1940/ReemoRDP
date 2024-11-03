@@ -1,7 +1,6 @@
 $installerUrl = "https://download.reemo.io/reemo.setup.x64.exe" 
 $installerPath = "C:\reemo_installer.exe"
 $configPath = "${Env:PROGRAMFILES}\Reemo\service\reemo.ini"
-$ReemoPath = "${Env:PROGRAMFILES}\Reemo\service\reemod.exe"  
 $authToken = "f5acdf09f0f5" 
 
 Write-Host "Downloading Reemo installer..."
@@ -26,7 +25,7 @@ if (Test-Path $configPath) {
 
 Write-Host "Starting Reemo..."
 try {
-    Start-Process -FilePath $ReemoPath -WindowStyle Hidden
+    Start-Process -FilePath "${Env:PROGRAMFILES}\Reemo\service\reemod.exe" -WindowStyle Hidden
     Write-Host "Reemo service restarted successfully."
 } catch {
     Write-Host "Error: Failed to restart Reemo."
@@ -34,9 +33,4 @@ try {
 }
 
 
-Write-Host "Cleaning up..."
-Remove-Item -Path $installerPath -Force
-
-Write-Host "Reemo setup completed successfully!"
-
-cmd /c sleep 120
+sleep 120
