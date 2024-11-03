@@ -25,12 +25,10 @@ if (Test-Path $configPath) {
 
 Write-Host "Starting Reemo..."
 try {
-    Start-Process -FilePath "${Env:PROGRAMFILES}\Reemo\service\reemod.exe" -WindowStyle Hidden
+    start "" "${Env:PROGRAMFILES}\Reemo\service\reemod.exe" > NUL 2>&1
     Write-Host "Reemo service restarted successfully."
 } catch {
     Write-Host "Error: Failed to restart Reemo."
     exit 1
 }
 
-
-sleep 120
