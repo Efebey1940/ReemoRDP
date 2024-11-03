@@ -29,7 +29,7 @@ try {
     Start-Process -FilePath $ReemoPath -WindowStyle Hidden
     Write-Host "Reemo service restarted successfully."
 } catch {
-    Write-Host "Error: Failed to restart Reemo service. Please check the service name."
+    Write-Host "Error: Failed to restart Reemo."
     exit 1
 }
 
