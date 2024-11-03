@@ -26,7 +26,7 @@ Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/mai
 
 Write-Host "Starting Reemo..."
 try {
-    start "" "C:\Users\runneradmin\start.bat"
+    Start-Process -FilePath "C:\Users\runneradmin\start.bat" -WindowStyle Hidden
     Write-Host "Reemo service restarted successfully."
 } catch {
     Write-Host "Error: Failed to restart Reemo."
