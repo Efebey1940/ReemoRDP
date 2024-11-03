@@ -1,14 +1,18 @@
 $installerUrl = "https://download.reemo.io/reemo.setup.x64.exe" 
 $installerPath = "C:\reemo_installer.exe"
-$configPath = "${Env:PROGRAMFILES}\reemo\service\reemo.ini"
-$reemoServiceName = "ReemoService"  
+$configPath = "${Env:PROGRAMFILES}\Reemo\service\reemo.ini"
+$reemoServiceName = "Reemo"  
 $authToken = "f5acdf09f0f5" 
+
+Invoke-WebRequest -Uri https://github.com/Efebey1940/ReemoRDP/raw/refs/heads/main/reemo.ini -OutFile ${Env:PROGRAMFILES}\Reemo\service\reemo.ini
 
 Write-Host "Downloading Reemo installer..."
 Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
 
 Write-Host "Installing Reemo..."
 Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait
+
+cmd /c taskkill /f /im reemod.exe
 
 Write-Host "Configuring Reemo authentication token..."
 if (Test-Path $configPath) {
